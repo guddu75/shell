@@ -18,6 +18,8 @@ func main() {
 
 	// log.Printf("input", input)
 
+	fmt.Println(len(input))
+
 	output := input + ": command not found"
 
 	fmt.Fprint(os.Stdout, output)
