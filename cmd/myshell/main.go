@@ -16,7 +16,7 @@ func main() {
 	// Wait for user input
 	input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
 
-	fmt.Println(input)
+	fmt.Println("input", input)
 
 	fmt.Fprint(os.Stdout, input)
 
