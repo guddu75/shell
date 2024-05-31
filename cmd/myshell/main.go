@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -17,8 +16,8 @@ func main() {
 	// Wait for user input
 	input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
 
-	log.Printf("input", input)
+	// log.Printf("input", input)
 
-	fmt.Fprint(os.Stdout, input)
+	fmt.Fprint(os.Stdout, input+": command not found")
 
 }
