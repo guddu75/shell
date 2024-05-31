@@ -18,7 +18,7 @@ func main() {
 
 	// log.Printf("input", input)
 
-	output := input[:len(input)-1] + ": command not found"
+	output := input[:len(input)-1] + ": command not found\n"
 
 	fmt.Fprint(os.Stdout, output)
 
