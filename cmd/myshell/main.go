@@ -3,7 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -11,16 +13,24 @@ func main() {
 	// fmt.Println("Logs from your program will appear here!")
 
 	// Uncomment this block to pass the first stage
-	fmt.Fprint(os.Stdout, "$ ")
+
+	reader := bufio.NewReader(os.Stdin)
 
 	for {
-		input, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+
+		fmt.Fprint(os.Stdout, "$ ")
 
 		// log.Printf("input", input)
 
-		output := input[:len(input)-1] + ": command not found\n"
+		cmd, err := reader.ReadString('\n')
 
-		fmt.Fprint(os.Stdout, output)
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+
+		cmd = strings.TrimSpace(cmd)
+
+		fmt.Fprint(os.Stdout, cmd)
 
 	}
 
