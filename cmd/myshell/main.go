@@ -30,7 +30,7 @@ func main() {
 
 		cmd = strings.TrimSpace(cmd)
 
-		fmt.Printf("%s: command not found", cmd)
+		fmt.Printf("%s: command not found\n", cmd)
 
 		os.Exit(1)
 
