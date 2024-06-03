@@ -27,7 +27,7 @@ func main() {
 			log.Fatal(err.Error())
 		}
 
-		fmt.Println(cmd)
+		// fmt.Println(cmd)
 
 		if cmd == "exit 0" {
 			os.Exit(0)
@@ -36,7 +36,7 @@ func main() {
 		} else {
 			fmt.Printf("%s: command not found\n", cmd)
 		}
-		os.Exit(0)
+		// os.Exit(0)
 
 		// os.Exit(1)
 
