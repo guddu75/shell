@@ -22,7 +22,7 @@ func handlecommand(inputString string) {
 		if args[0] == "exit" || args[0] == "echo" || args[0] == "type" {
 			fmt.Println(args[0] + " is a shell builtin\n")
 		} else {
-			fmt.Println(args[0] + " nonexistent not found")
+			fmt.Println(args[0] + " nonexistent not found\n")
 		}
 
 	default:
