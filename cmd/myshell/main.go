@@ -21,7 +21,7 @@ func main() {
 		fmt.Fprint(os.Stdout, "$ ")
 
 		cmd, err := reader.ReadString('\n')
-		cmd = strings.TrimSpace(cmd)
+		cmd = strings.Trim(cmd, "\n")
 
 		if err != nil {
 			log.Fatal(err.Error())
@@ -32,7 +32,7 @@ func main() {
 		if cmd == "exit 0" {
 			os.Exit(0)
 		} else if strings.HasPrefix(cmd, "echo") {
-
+			fmt.Printf(cmd[5:])
 		}
 
 		fmt.Printf("%s: command not found\n", cmd)
