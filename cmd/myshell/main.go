@@ -36,6 +36,7 @@ func main() {
 		} else {
 			fmt.Printf("%s: command not found\n", cmd)
 		}
+		os.Exit(0)
 
 		// os.Exit(1)
 
