@@ -23,16 +23,15 @@ func main() {
 		// log.Printf("input", input)
 
 		cmd, err := reader.ReadString('\n')
+		cmd = strings.TrimSpace(cmd)
 
 		if err != nil {
 			log.Fatal(err.Error())
 		}
 
-		cmd = strings.TrimSpace(cmd)
-
 		fmt.Printf("%s: command not found\n", cmd)
 
-		os.Exit(1)
+		// os.Exit(1)
 
 	}
 
