@@ -20,13 +20,15 @@ func main() {
 
 		fmt.Fprint(os.Stdout, "$ ")
 
-		// log.Printf("input", input)
-
 		cmd, err := reader.ReadString('\n')
 		cmd = strings.TrimSpace(cmd)
 
 		if err != nil {
 			log.Fatal(err.Error())
+		}
+
+		if cmd == "exit 0" {
+			os.Exit(0)
 		}
 
 		fmt.Printf("%s: command not found\n", cmd)
