@@ -5,8 +5,35 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
+
+func handlecommand(inputString string) {
+	cmd, args := commandParser(inputString)
+
+	switch cmd {
+	case "exit":
+		code, _ := strconv.Atoi(args[0])
+		os.Exit(code)
+	case "echo":
+		fmt.Println(strings.Join(args, " "))
+	default:
+		fmt.Printf("%s: command not found\n", cmd)
+	}
+
+}
+
+func commandParser(cmd string) (string, []string) {
+	tokens := strings.Split(cmd, " ")
+
+	if len(tokens) < 2 {
+		return tokens[0], []string{}
+	}
+
+	return tokens[0], tokens[1:]
+
+}
 
 func main() {
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -27,16 +54,18 @@ func main() {
 			log.Fatal(err.Error())
 		}
 
+		handlecommand(cmd)
+
 		// fmt.Println(cmd)
 
-		if cmd == "exit 0" {
-			os.Exit(0)
-		} else if strings.HasPrefix(cmd, "echo") {
-			fmt.Printf(cmd[5:] + "\n")
-		} else {
-			fmt.Printf("%s: command not found\n", cmd)
-		}
-		os.Exit(0)
+		// if cmd == "exit 0" {
+		// 	os.Exit(0)
+		// } else if strings.HasPrefix(cmd, "echo") {
+		// 	fmt.Println(cmd[5:])
+		// } else {
+		// 	fmt.Printf("%s: command not found\n", cmd)
+		// }
+		// os.Exit(0)
 
 		// os.Exit(1)
 
