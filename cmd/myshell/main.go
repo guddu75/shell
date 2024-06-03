@@ -27,7 +27,7 @@ func main() {
 			log.Fatal(err.Error())
 		}
 
-		fmt.Printf(cmd)
+		fmt.Println(cmd)
 
 		if cmd == "exit 0" {
 			os.Exit(0)
