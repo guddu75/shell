@@ -11,7 +11,6 @@ import (
 
 func handlecommand(inputString string) {
 	cmd, args := commandParser(inputString)
-
 	switch cmd {
 	case "exit":
 		code, _ := strconv.Atoi(args[0])
@@ -24,11 +23,9 @@ func handlecommand(inputString string) {
 		} else {
 			fmt.Println(args[0] + " not found\n")
 		}
-
 	default:
 		fmt.Printf("%s: command not found\n", cmd)
 	}
-
 }
 
 func commandParser(cmd string) (string, []string) {
@@ -48,16 +45,12 @@ func main() {
 	for {
 
 		fmt.Fprint(os.Stdout, "$ ")
-
 		cmd, err := reader.ReadString('\n')
 		cmd = strings.Trim(cmd, "\n")
-
 		if err != nil {
 			log.Fatal(err.Error())
 		}
-
 		handlecommand(cmd)
-
 	}
 
 	// Wait for user input
