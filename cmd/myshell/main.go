@@ -18,6 +18,13 @@ func handlecommand(inputString string) {
 		os.Exit(code)
 	case "echo":
 		fmt.Println(strings.Join(args, " "))
+	case "type":
+		if args[0] == "exit" || args[0] == "echo" || args[0] == "type" {
+			fmt.Println(args[0] + " is a shell builtin\n")
+		} else {
+			fmt.Println(args[0] + " nonexistent not found")
+		}
+
 	default:
 		fmt.Printf("%s: command not found\n", cmd)
 	}
