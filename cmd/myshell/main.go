@@ -33,7 +33,8 @@ func typeCmd(args []string) {
 			}
 		}
 		// fmt.Println("here")
-		fmt.Println(args[0] + ": command not found")
+		//^(bash: type: )?nonexistent[:]? not found\\r\\n
+		fmt.Println("^(bash: type: )?" + args[0] + "[:]? not found\\r")
 
 	}
 }
