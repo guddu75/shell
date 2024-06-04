@@ -72,7 +72,7 @@ func main() {
 
 	for {
 
-		fmt.Fprint(os.Stdout, "$ ")
+		fmt.Printf("$ ")
 		cmd, err := reader.ReadString('\n')
 		cmd = strings.Trim(cmd, "\n")
 		if err != nil {
