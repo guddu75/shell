@@ -5,24 +5,47 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
+
+var paths []string
+
+func exitCmd(arg string) {
+	code, _ := strconv.Atoi(arg)
+	os.Exit(code)
+}
+
+func echoCmd(args []string) {
+	fmt.Println(strings.Join(args, " "))
+}
+
+func typeCmd(args []string) {
+	if args[0] == "exit" || args[0] == "echo" || args[0] == "type" {
+		fmt.Println(args[0] + " is a shell builtin")
+	} else {
+		for _, path := range paths {
+			filepath := filepath.Join(path, args[0])
+			if _, err := os.Stat(filepath); err == nil {
+				fmt.Println(args[0] + " is " + filepath)
+				return
+			}
+		}
+		fmt.Printf("%s: command not found\n", args[0])
+
+	}
+}
 
 func handlecommand(inputString string) {
 	cmd, args := commandParser(inputString)
 	switch cmd {
 	case "exit":
-		code, _ := strconv.Atoi(args[0])
-		os.Exit(code)
+		exitCmd(args[0])
 	case "echo":
-		fmt.Println(strings.Join(args, " "))
+		echoCmd(args)
 	case "type":
-		if args[0] == "exit" || args[0] == "echo" || args[0] == "type" {
-			fmt.Println(args[0] + " is a shell builtin")
-		} else {
-			fmt.Println(args[0] + " not found")
-		}
+		typeCmd(args)
 	default:
 		fmt.Printf("%s: command not found\n", cmd)
 	}
@@ -41,6 +64,9 @@ func commandParser(cmd string) (string, []string) {
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
+	path := os.Getenv("PATH")
+
+	paths = strings.Split(path, ":")
 
 	for {
 
