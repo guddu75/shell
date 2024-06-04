@@ -32,6 +32,7 @@ func typeCmd(args []string) {
 				return
 			}
 		}
+		fmt.Println("here")
 		fmt.Printf("%s: command not found\n", args[0])
 
 	}
