@@ -32,8 +32,6 @@ func typeCmd(args []string) {
 				return
 			}
 		}
-		// fmt.Println("here")
-		//^(bash: type: )?nonexistent[:]? not found\\r\\n
 		fmt.Printf("^(bash: type: )?" + args[0] + "[:]? not found\\r\\n")
 		os.Exit(0)
 
