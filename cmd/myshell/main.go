@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -39,6 +40,18 @@ func typeCmd(args []string) {
 	}
 }
 
+func execCmd(args []string) {
+	for _, path := range paths {
+		filepath := filepath.Join(path, args[0])
+		cmd := exec.Command(filepath, args...)
+		ouput, err := cmd.Output()
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		fmt.Println(string(ouput))
+	}
+}
+
 func handlecommand(inputString string) {
 	cmd, args := commandParser(inputString)
 	switch cmd {
@@ -48,6 +61,8 @@ func handlecommand(inputString string) {
 		echoCmd(args)
 	case "type":
 		typeCmd(args)
+	case "program_1234":
+		execCmd(args)
 	default:
 		fmt.Printf("%s: command not found\n", cmd)
 	}
