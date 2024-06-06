@@ -56,7 +56,6 @@ func execCmd(file string, args []string) {
 		}
 	}
 	fmt.Printf("%s: command not found\n", file)
-	return
 }
 
 func isbuiltIn(cmd string) bool {

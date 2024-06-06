@@ -1,7 +1,10 @@
 package main
 
 import (
+	"errors"
+	"fmt"
 	"os"
+	"strings"
 )
 
 func Pwd() (string, error) {
@@ -17,5 +20,37 @@ func Pwd() (string, error) {
 }
 
 func Cd(path string) error {
+
+	curDir, err := Pwd()
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	temp := strings.Split(curDir, "/")
+
+	if strings.HasPrefix(path, "/") {
+		return os.Chdir(path)
+	}
+
+	steps := strings.Split(path, "/")
+
+	for _, step := range steps {
+		if step == "." {
+			continue
+		} else if step == ".." {
+			if len(temp) == 0 {
+				return errors.New("No such file present")
+			} else {
+				temp = temp[:len(temp)-1]
+			}
+		} else {
+			temp = append(temp, step)
+		}
+	}
+
+	path = strings.Join(temp, "/")
+
 	return os.Chdir(path)
+
 }
