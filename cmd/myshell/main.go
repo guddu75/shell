@@ -75,6 +75,8 @@ func handlecommand(inputString string) {
 		typeCmd(args)
 	} else if !isbuiltIn(cmd) {
 		execCmd(cmd, args)
+	} else if cmd == "pwd" {
+		Pwd()
 	} else {
 		fmt.Printf("%s: command not found\n", cmd)
 	}
