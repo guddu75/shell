@@ -73,7 +73,7 @@ func pwdCmd() {
 }
 
 func cdCmd(path string) {
-	log.Fatal(path)
+	// log.Fatal(path)
 	err := Cd(path)
 	if err != nil {
 		fmt.Println("cd: " + path + ": No such file or directory")
