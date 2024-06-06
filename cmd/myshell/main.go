@@ -50,7 +50,7 @@ func execCmd(file string, args []string) {
 		if err != nil {
 			fmt.Println(err.Error())
 		}
-		fmt.Println(string(ouput))
+		fmt.Printf("%s", string(ouput))
 		return
 	}
 	return
