@@ -32,7 +32,7 @@ func typeCmd(args []string) {
 				return
 			}
 		}
-		fmt.Printf("%s: command not found\n", args[0])
+		fmt.Printf("%s: command not found", args[0])
 		// os.Exit(0)
 
 	}
