@@ -32,7 +32,7 @@ func typeCmd(args []string) {
 				return
 			}
 		}
-		fmt.Printf("^(bash: type: )?" + args[0] + "[:]? not found\\r\\n")
+		fmt.Printf("%s: command not found\n", args[0])
 		// os.Exit(0)
 
 	}
