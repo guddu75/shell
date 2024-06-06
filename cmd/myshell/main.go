@@ -42,9 +42,9 @@ func typeCmd(args []string) {
 	}
 }
 
-func execCmd(args []string) {
+func execCmd(file string, args []string) {
 	for _, path := range paths {
-		filepath := filepath.Join(path, args[0])
+		filepath := filepath.Join(path, file)
 		cmd := exec.Command(filepath, args...)
 		ouput, err := cmd.Output()
 		if err != nil {
@@ -69,7 +69,7 @@ func handlecommand(inputString string) {
 	} else if cmd == "type" {
 		typeCmd(args)
 	} else if !isbuiltIn(cmd) {
-		execCmd(args)
+		execCmd(cmd, args)
 	} else {
 		fmt.Printf("%s: command not found\n", cmd)
 	}
