@@ -15,3 +15,7 @@ func Pwd() (string, error) {
 	return dir, nil
 
 }
+
+func Cd(path string) error {
+	return os.Chdir(path)
+}

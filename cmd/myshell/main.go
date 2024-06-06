@@ -64,6 +64,21 @@ func isbuiltIn(cmd string) bool {
 	return ok
 }
 
+func pwdCmd() {
+	currDir, err := Pwd()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Println(currDir)
+}
+
+func cdCmd(path string) {
+	err := Cd(path)
+	if err != nil {
+		fmt.Println("cd: " + path + ": No such file or directory")
+	}
+}
+
 func handlecommand(inputString string) {
 	cmd, args := commandParser(inputString)
 
@@ -76,7 +91,9 @@ func handlecommand(inputString string) {
 	} else if !isbuiltIn(cmd) {
 		execCmd(cmd, args)
 	} else if cmd == "pwd" {
-		Pwd()
+		pwdCmd()
+	} else if cmd == "cd" {
+		cdCmd(args[0])
 	} else {
 		fmt.Printf("%s: command not found\n", cmd)
 	}
