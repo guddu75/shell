@@ -21,6 +21,12 @@ func Pwd() (string, error) {
 
 func Cd(path string) error {
 
+	homeDir := os.Getenv("HOME")
+
+	if path == "~" {
+		return os.Chdir(homeDir)
+	}
+
 	curDir, err := Pwd()
 
 	if err != nil {
@@ -40,7 +46,7 @@ func Cd(path string) error {
 			continue
 		} else if step == ".." {
 			if len(temp) == 0 {
-				return errors.New("No such file present")
+				return errors.New("no such file present")
 			} else {
 				temp = temp[:len(temp)-1]
 			}
