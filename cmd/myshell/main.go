@@ -45,14 +45,17 @@ func typeCmd(args []string) {
 func execCmd(file string, args []string) {
 	for _, path := range paths {
 		filepath := filepath.Join(path, file)
-		cmd := exec.Command(filepath, args...)
-		ouput, err := cmd.Output()
-		if err != nil {
-			fmt.Println(err.Error())
+		if _, err := os.Stat(filepath); err == nil {
+			cmd := exec.Command(filepath, args...)
+			ouput, err := cmd.Output()
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			fmt.Printf("%s", string(ouput))
+			return
 		}
-		fmt.Printf("%s", string(ouput))
-		return
 	}
+	fmt.Printf("%s: command not found\n", file)
 	return
 }
 
