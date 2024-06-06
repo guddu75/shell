@@ -89,12 +89,12 @@ func handlecommand(inputString string) {
 		echoCmd(args)
 	} else if cmd == "type" {
 		typeCmd(args)
-	} else if !isbuiltIn(cmd) {
-		execCmd(cmd, args)
 	} else if cmd == "pwd" {
 		pwdCmd()
 	} else if cmd == "cd" {
 		cdCmd(args[0])
+	} else if !isbuiltIn(cmd) {
+		execCmd(cmd, args)
 	} else {
 		fmt.Printf("%s: command not found\n", cmd)
 	}
@@ -129,6 +129,8 @@ func main() {
 	builtinCommands["echo"] = 0
 	builtinCommands["exit"] = 1
 	builtinCommands["type"] = 2
+	builtinCommands["pwd"] = 3
+	builtinCommands["cd"] = 4
 
 	reader := bufio.NewReader(os.Stdin)
 	path := os.Getenv("PATH")
