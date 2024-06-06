@@ -51,7 +51,9 @@ func execCmd(file string, args []string) {
 			fmt.Println(err.Error())
 		}
 		fmt.Println(string(ouput))
+		return
 	}
+	return
 }
 
 func isbuiltIn(cmd string) bool {
