@@ -13,6 +13,8 @@ import (
 
 var paths []string
 
+var builtinCommands = make(map[string]int)
+
 func exitCmd(arg string) {
 	code, _ := strconv.Atoi(arg)
 	os.Exit(code)
@@ -52,20 +54,38 @@ func execCmd(args []string) {
 	}
 }
 
+func isbuiltIn(cmd string) bool {
+	_, ok := builtinCommands[cmd]
+	return ok
+}
+
 func handlecommand(inputString string) {
 	cmd, args := commandParser(inputString)
-	switch cmd {
-	case "exit":
+
+	if cmd == "exit" {
 		exitCmd(args[0])
-	case "echo":
+	} else if cmd == "echo" {
 		echoCmd(args)
-	case "type":
+	} else if cmd == "type" {
 		typeCmd(args)
-	case "program_1234":
+	} else if !isbuiltIn(cmd) {
 		execCmd(args)
-	default:
+	} else {
 		fmt.Printf("%s: command not found\n", cmd)
 	}
+
+	// switch cmd {
+	// case "exit":
+	// 	exitCmd(args[0])
+	// case "echo":
+	// 	echoCmd(args)
+	// case "type":
+	// 	typeCmd(args)
+	// case isbuiltIn():
+	// 	execCmd(args)
+	// default:
+
+	// }
 }
 
 func commandParser(cmd string) (string, []string) {
@@ -80,6 +100,11 @@ func commandParser(cmd string) (string, []string) {
 }
 
 func main() {
+
+	builtinCommands["echo"] = 0
+	builtinCommands["exit"] = 1
+	builtinCommands["type"] = 2
+
 	reader := bufio.NewReader(os.Stdin)
 	path := os.Getenv("PATH")
 
